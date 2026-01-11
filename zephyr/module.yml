@@ -1,0 +1,11 @@
+# TivaWare Module Configuration for Zephyr
+# Copyright (c) 2025 Robert Sexton
+# SPDX-License-Identifier: Apache-2.0
+
+name: tivaware
+
+build:
+  # CMakeLists.txt and Kconfig paths are relative to module root (tivaware/)
+  # Since they are in the zephyr/ subdirectory, specify that path
+  cmake: zephyr
+  kconfig: zephyr/Kconfig

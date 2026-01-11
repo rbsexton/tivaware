@@ -1,0 +1,41 @@
+# Custom West Manifest for Projects Using Out-of-Tree TivaWare
+#
+# This manifest imports the standard Zephyr manifest and adds
+# TivaWare as a local out-of-tree module.
+#
+# To use this:
+# 1. Create a new west workspace directory
+# 2. Place this file as west.yml in your application directory
+# 3. Run: west init -l <your-app-dir>
+# 4. Run: west update
+
+manifest:
+  # Use self to indicate this repository is the manifest repository
+  self:
+    path: .
+
+  remotes:
+    - name: zephyrproject
+      url-base: https://github.com/zephyrproject-rtos
+
+  # Import the standard Zephyr manifest
+  projects:
+    - name: zephyr
+      remote: zephyrproject
+      revision: main
+      # Or specify a specific version:
+      # revision: v3.7.0
+      import: true
+
+    # Add TivaWare as a local project
+    - name: tivaware
+      path: ../projects/tivaware
+      # For local projects, no remote/revision needed
+      # West will just reference the local directory
+
+  # Alternatively, if TivaWare were in a git repository:
+  # projects:
+  #   - name: tivaware
+  #     url: https://github.com/your-org/tivaware.git
+  #     revision: main
+  #     path: modules/hal/tivaware

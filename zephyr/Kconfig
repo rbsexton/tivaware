@@ -1,0 +1,33 @@
+# TivaWare Kconfig
+# Copyright (c) 2025 Robert Sexton
+# SPDX-License-Identifier: Apache-2.0
+
+config HAS_TIVAWARE
+	bool
+	select HAS_TI_DRIVERLIB
+	help
+	  This option is selected when TivaWare peripheral driver library
+	  is available.
+
+config HAS_TI_DRIVERLIB
+	bool
+	help
+	  Helper symbol to indicate TI driverlib is available.
+
+if HAS_TIVAWARE
+
+config TIVAWARE_DRIVERLIB
+	bool "Use TivaWare driverlib"
+	default y
+	help
+	  Enable TivaWare peripheral driver library.
+	  This provides low-level hardware access functions for
+	  TM4C series microcontrollers.
+
+config TIVAWARE_ASSERT_DEBUG
+	bool "Enable TivaWare debug assertions"
+	help
+	  Enable debug assertions in TivaWare driverlib.
+	  This adds runtime parameter checking but increases code size.
+
+endif # HAS_TIVAWARE
